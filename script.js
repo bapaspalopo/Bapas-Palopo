@@ -36,7 +36,7 @@ function renderLogo(data){
 
  const mode=data.logoMode||'text';
  const fallback=data.logoText||'BP';
- const url=(data.logoUrl||'').trim();
+ const url=(data.logoData||data.logoUrl||'').trim();
 
  function showText(){
   image.hidden=true;
