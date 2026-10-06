@@ -30,28 +30,41 @@ themeBtn.addEventListener('click',()=>{
 function safeText(id,text){const el=document.getElementById(id);if(el) el.textContent=text||''}
 
 function renderLogo(data){
- const text=document.getElementById('avatarText');
- const image=document.getElementById('avatarImage');
- if(!text||!image) return;
+ const avatarText=document.getElementById('avatarText');
+ const avatarImage=document.getElementById('avatarImage');
+ const loaderText=document.getElementById('loaderText');
+ const loaderImage=document.getElementById('loaderImage');
 
  const mode=data.logoMode||'text';
  const fallback=data.logoText||'BP';
+ const loaderFallback=(fallback||'BP').charAt(0)||'B';
  const url=(data.logoData||data.logoUrl||'').trim();
 
- function showText(){
-  image.hidden=true;
-  image.removeAttribute('src');
-  text.hidden=false;
-  text.textContent=fallback;
+ function applyText(textEl,imageEl,textValue){
+  if(imageEl){
+   imageEl.hidden=true;
+   imageEl.removeAttribute('src');
+  }
+  if(textEl){
+   textEl.hidden=false;
+   textEl.textContent=textValue;
+  }
+ }
+
+ function applyImage(textEl,imageEl,textValue){
+  if(!imageEl||!textEl)return;
+  textEl.hidden=true;
+  imageEl.hidden=false;
+  imageEl.src=url;
+  imageEl.onerror=()=>applyText(textEl,imageEl,textValue);
  }
 
  if(mode==='image'&&url){
-  text.hidden=true;
-  image.hidden=false;
-  image.src=url;
-  image.onerror=showText;
+  applyImage(avatarText,avatarImage,fallback);
+  applyImage(loaderText,loaderImage,loaderFallback);
  }else{
-  showText();
+  applyText(avatarText,avatarImage,fallback);
+  applyText(loaderText,loaderImage,loaderFallback);
  }
 }
 function normalizeWa(phone){return String(phone||'').replace(/\D/g,'').replace(/^0/,'62')}
