@@ -25,17 +25,37 @@ jobs:
           node <<'NODE'
           const fs = require('fs');
           const body = process.env.ISSUE_BODY || '';
-          const match = body.match(/<!-- LINKHUB_PAYLOAD_START -->\s*([A-Za-z0-9+/=\r\n]+?)\s*<!-- LINKHUB_PAYLOAD_END -->/);
-          if (!match) throw new Error('Payload tidak ditemukan.');
-          const raw = Buffer.from(match[1].replace(/\s/g, ''), 'base64').toString('utf8');
-          const data = JSON.parse(raw);
+
+          let data;
+          const jsonMatch = body.match(/<!-- LINKHUB_JSON_START -->\s*([\s\S]*?)\s*<!-- LINKHUB_JSON_END -->/);
+          if (jsonMatch) {
+            data = JSON.parse(jsonMatch[1]);
+          } else {
+            const oldMatch = body.match(/<!-- LINKHUB_PAYLOAD_START -->\s*([A-Za-z0-9+/=\r\n]+?)\s*<!-- LINKHUB_PAYLOAD_END -->/);
+            if (!oldMatch) throw new Error('Payload tidak ditemukan.');
+            const raw = Buffer.from(oldMatch[1].replace(/\s/g, ''), 'base64').toString('utf8');
+            data = JSON.parse(raw);
+          }
+
           if (!data || typeof data !== 'object' || !Array.isArray(data.links)) throw new Error('Struktur data tidak valid.');
           if (data.links.length > 30) throw new Error('Terlalu banyak tautan.');
+
           for (const link of data.links) {
             if (!link.title || !link.url) throw new Error('Judul dan URL tautan wajib diisi.');
             const url = new URL(link.url);
             if (!['http:', 'https:'].includes(url.protocol)) throw new Error('URL harus http/https.');
           }
+
+          if (data.logoData) {
+            if (!/^data:image\/(webp|png|jpeg);base64,/i.test(data.logoData)) throw new Error('Format logo tidak valid.');
+            if (data.logoData.length > 40000) throw new Error('Data logo terlalu besar.');
+            data.logoMode = 'image';
+          } else {
+            data.logoData = '';
+            data.logoMode = data.logoMode === 'image' ? 'text' : (data.logoMode || 'text');
+          }
+
+          delete data.logoUrl;
           fs.writeFileSync('data/profile.json', JSON.stringify(data, null, 2) + '\n');
           NODE
 
