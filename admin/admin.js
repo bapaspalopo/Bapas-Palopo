@@ -35,7 +35,7 @@ function publish(){
  const payload=utf8ToBase64(JSON.stringify(data));
  const title='[LINKHUB-PUBLISH] Update konten Bapas Palopo';
  const body=`Permintaan publish Link Hub Bapas Palopo.\n\n> Jangan mengubah payload di bawah ini. Workflow hanya akan memproses issue yang dibuat oleh akun pemilik repository.\n\n<!-- LINKHUB_PAYLOAD_START -->\n${payload}\n<!-- LINKHUB_PAYLOAD_END -->`;
- const url='https://github.com/bapaspalopo/Bapas-Palopo/issues/new?title='+encodeURIComponent(title)+'&body='+encodeURIComponent(body);
+ const url='https://github.com/bapaspalopo/bapaspalopo.github.io/issues/new?title='+encodeURIComponent(title)+'&body='+encodeURIComponent(body);
  $('#saveState').textContent='Konfirmasi publish di tab GitHub yang baru dibuka.';
  window.open(url,'_blank','noopener,noreferrer');
 }
