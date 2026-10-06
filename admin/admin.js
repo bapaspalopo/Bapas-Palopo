@@ -4,43 +4,18 @@ const tpl=$('#linkTemplate');
 const profileKeys=['name','handle','tagline','bio','status','accent','theme','phone','address','maps','about'];
 let data={name:'',handle:'',tagline:'',bio:'',status:'',accent:'#b7ff3c',theme:'dark',phone:'',address:'',maps:'',about:'',links:[]};
 
-function isValidHex(v){return /^#[0-9a-fA-F]{6}$/.test(String(v||'').trim())}
-function normalizeHex(v){
- let s=String(v||'').trim();
- if(s&&!s.startsWith('#'))s='#'+s;
- return s.toUpperCase();
-}
-function syncAccentFields(from){
- const picker=$('#accent');
- const hex=$('#accentHex');
- if(!picker||!hex)return;
- if(from==='hex'){
-  const value=normalizeHex(hex.value);
-  hex.value=value;
-  if(isValidHex(value)){picker.value=value;data.accent=value;hex.classList.remove('invalid');markDirty()}
-  else{hex.classList.add('invalid')}
- }else{
-  const value=normalizeHex(picker.value);
-  hex.value=value;
-  hex.classList.remove('invalid');
-  data.accent=value;
-  markDirty();
- }
+function setActivePreset(color){
+ const normalized=String(color||'').toUpperCase();
+ document.querySelectorAll('.color-swatch').forEach(btn=>{
+  btn.classList.toggle('active',btn.dataset.color.toUpperCase()===normalized);
+ });
 }
 function fillProfile(){
  profileKeys.forEach(k=>{const el=$('#'+k);if(el)el.value=data[k]??''});
- const hex=$('#accentHex');
- if(hex){hex.value=normalizeHex(data.accent||'#B7FF3C');hex.classList.remove('invalid')}
+ setActivePreset(data.accent||'#00223D');
 }
 
-function readProfile(){
- profileKeys.forEach(k=>{const el=$('#'+k);if(el)data[k]=el.value});
- const hex=$('#accentHex');
- if(hex){
-  const value=normalizeHex(hex.value);
-  if(isValidHex(value))data.accent=value;
- }
-}
+function readProfile(){profileKeys.forEach(k=>{const el=$('#'+k);if(el)data[k]=el.value})}
 function markDirty(){const el=$('#saveState');if(el)el.textContent='Ada perubahan yang belum dipublish.'}
 function renderLinks(){
  list.innerHTML='';
@@ -75,12 +50,14 @@ function publish(){
  window.open(url,'_blank','noopener,noreferrer');
 }
 profileKeys.forEach(k=>document.addEventListener('input',e=>{if(e.target.id===k)markDirty()}));
-$('#accent')?.addEventListener('input',()=>syncAccentFields('picker'));
-$('#accentHex')?.addEventListener('input',()=>syncAccentFields('hex'));
-$('#accentHex')?.addEventListener('blur',()=>{
- const hex=$('#accentHex');
- const value=normalizeHex(hex.value);
- if(isValidHex(value)){hex.value=value;hex.classList.remove('invalid')}
+document.querySelectorAll('.color-swatch').forEach(btn=>{
+ btn.addEventListener('click',()=>{
+  const color=btn.dataset.color;
+  $('#accent').value=color;
+  data.accent=color;
+  setActivePreset(color);
+  markDirty();
+ });
 });
 $('#addLink').onclick=()=>{data.links.push({title:'Tautan Baru',subtitle:'Deskripsi singkat',url:'https://',platform:'link',icon:'NEW',featured:false});renderLinks();markDirty()};
 $('#reloadBtn').onclick=()=>{if(confirm('Buang perubahan yang belum dipublish dan muat ulang data publik?'))load()};
