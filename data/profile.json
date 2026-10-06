@@ -67,5 +67,9 @@
       "icon": "MAP",
       "featured": false
     }
-  ]
+  ],
+  "accentPreset": "pas",
+  "accentLight": "#00223D",
+  "accentDark": "#F1BF60",
+  "darkBg": "#071B2A"
 }
