@@ -64,9 +64,23 @@ function safeAccentForTheme(hex,theme){
  const rgb=hexToRgb(hex);
  if(!rgb) return '#b7ff3c';
  const hsl=rgbToHsl(rgb);
- if(theme==='dark' && hsl.l<58) hsl.l=64;
- if(theme==='dark' && hsl.s<35) hsl.s=45;
- if(theme==='light' && hsl.l>58) hsl.l=46;
+
+ if(theme==='dark'){
+  if(hsl.l<58) hsl.l=64;
+  if(hsl.s<35) hsl.s=45;
+ }
+
+ if(theme==='light'){
+  const isYellow=hsl.h>=42&&hsl.h<=72&&hsl.s>=55;
+  const isVeryBright=hsl.l>56;
+  if(isYellow){
+   hsl.s=Math.max(hsl.s,72);
+   hsl.l=36;
+  }else if(isVeryBright){
+   hsl.l=42;
+  }
+ }
+
  return rgbToHex(hslToRgb(hsl));
 }
 
