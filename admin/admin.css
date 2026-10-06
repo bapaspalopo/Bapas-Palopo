@@ -86,12 +86,16 @@ input:focus,textarea:focus,select:focus{
  background:#fff;
  box-shadow:0 0 0 3px rgba(36,71,216,.10);
 }
-input[type=color]{padding:4px;height:44px;background:#fff;min-width:64px;cursor:pointer}
-.color-control{display:grid;grid-template-columns:72px 1fr;gap:8px;align-items:center}
-.color-control input[type=color]{width:72px}
-.color-control input[type=text]{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;text-transform:uppercase;letter-spacing:.3px}
+.color-presets{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.color-swatch{position:relative;display:grid;grid-template-columns:28px 1fr;grid-template-rows:auto auto;column-gap:8px;align-items:center;text-align:left;padding:9px 10px;border:1px solid var(--line);background:#fff;border-radius:12px;box-shadow:none;min-height:58px}
+.color-swatch:hover{transform:translateY(-1px);border-color:#aebbd0;background:#fbfcff}
+.color-swatch>span{grid-row:1/3;width:28px;height:28px;border-radius:9px;background:var(--swatch);border:1px solid rgba(0,0,0,.10);box-shadow:inset 0 0 0 1px rgba(255,255,255,.18)}
+.color-swatch b{font-size:11px;color:var(--text);line-height:1.1}
+.color-swatch small{font-size:9px;color:#8994a6;line-height:1.1}
+.color-swatch.active{border-color:#5875ea;box-shadow:0 0 0 3px rgba(36,71,216,.10)}
+.color-swatch.active:after{content:"✓";position:absolute;top:6px;right:7px;width:16px;height:16px;border-radius:50%;display:grid;place-items:center;background:#2447d8;color:#fff;font-size:10px;font-weight:800}
+.color-swatch.official small{color:#8a6a20}
 .field-help{font-size:10px;color:#8994a6;line-height:1.4}
-input.invalid{border-color:#d95063!important;background:#fff6f7!important;box-shadow:0 0 0 3px rgba(217,80,99,.10)!important}
 .link-list{display:grid;gap:10px}
 .link-editor{
  display:grid;
@@ -187,6 +191,7 @@ input.invalid{border-color:#d95063!important;background:#fff6f7!important;box-sh
  .drag{display:none}
  .row-actions{justify-content:flex-end}
  .two,.three{grid-template-columns:1fr}
+ .color-presets{grid-template-columns:repeat(2,minmax(0,1fr))}
  .panel{padding:15px}
  .publish-bar{align-items:stretch;flex-wrap:wrap}
  .publish-bar>div{width:100%;margin:0}
