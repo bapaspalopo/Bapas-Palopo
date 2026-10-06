@@ -19,7 +19,20 @@
     <section class="notice secure"><span>●</span><div><b>Publish dilindungi GitHub.</b><br>Siapa pun mungkin dapat membuka halaman editor ini, tetapi perubahan tidak dapat masuk ke website publik kecuali publish dikonfirmasi melalui akun GitHub <b>bapaspalopo</b>.</div></section>
     <div class="layout">
       <section class="panel"><h2>Identitas</h2><div class="form-grid">
-        <label>Nama<input id="name"></label><label>Username<input id="handle"></label><label>Tagline<input id="tagline"></label><label>Status<input id="status"></label><label class="full">Bio<textarea id="bio" rows="3"></textarea></label><label>Warna aksen<div class="color-control"><input id="accent" type="color" aria-label="Pilih warna aksen"><input id="accentHex" type="text" value="#000080" maxlength="7" placeholder="#000080" spellcheck="false" aria-label="Kode HEX warna aksen"></div><small class="field-help">Bisa pilih warna atau ketik kode HEX, mis. #000080.</small></label><label>Tema<select id="theme"><option value="dark">Dark</option><option value="light">Light</option></select></label>
+        <label>Nama<input id="name"></label><label>Username<input id="handle"></label><label>Tagline<input id="tagline"></label><label>Status<input id="status"></label><label class="full">Bio<textarea id="bio" rows="3"></textarea></label><label>Warna aksen
+  <input id="accent" type="hidden">
+  <div class="color-presets" id="colorPresets" aria-label="Pilihan warna aksen">
+    <button type="button" class="color-swatch official" data-color="#00223D" style="--swatch:#00223D" title="Navy Pemasyarakatan"><span></span><b>Navy</b><small>Pemasyarakatan</small></button>
+    <button type="button" class="color-swatch official" data-color="#F1BF60" style="--swatch:#F1BF60" title="Gold Kemenimipas"><span></span><b>Gold</b><small>Kemenimipas</small></button>
+    <button type="button" class="color-swatch official" data-color="#44AAFE" style="--swatch:#44AAFE" title="Biru Langit Kemenimipas"><span></span><b>Sky</b><small>Kemenimipas</small></button>
+    <button type="button" class="color-swatch" data-color="#2563EB" style="--swatch:#2563EB" title="Royal Blue"><span></span><b>Royal</b><small>Modern</small></button>
+    <button type="button" class="color-swatch" data-color="#0F766E" style="--swatch:#0F766E" title="Teal"><span></span><b>Teal</b><small>Tenang</small></button>
+    <button type="button" class="color-swatch" data-color="#15803D" style="--swatch:#15803D" title="Emerald"><span></span><b>Emerald</b><small>Segar</small></button>
+    <button type="button" class="color-swatch" data-color="#7C3AED" style="--swatch:#7C3AED" title="Violet"><span></span><b>Violet</b><small>Kreatif</small></button>
+    <button type="button" class="color-swatch" data-color="#C2410C" style="--swatch:#C2410C" title="Orange"><span></span><b>Orange</b><small>Hangat</small></button>
+  </div>
+  <small class="field-help">Pilihan sudah disiapkan agar tetap terbaca di tema terang maupun gelap.</small>
+</label><label>Tema<select id="theme"><option value="dark">Dark</option><option value="light">Light</option></select></label>
       </div></section>
       <section class="panel"><h2>Kontak & Tentang</h2><div class="form-grid">
         <label>Nomor pengaduan / WhatsApp<input id="phone"></label><label>Google Maps URL<input id="maps"></label><label class="full">Alamat<textarea id="address" rows="2"></textarea></label><label class="full">Tentang Bapas<textarea id="about" rows="4"></textarea></label>
