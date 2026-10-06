@@ -86,7 +86,12 @@ input:focus,textarea:focus,select:focus{
  background:#fff;
  box-shadow:0 0 0 3px rgba(36,71,216,.10);
 }
-input[type=color]{padding:4px;height:44px;background:#fff}
+input[type=color]{padding:4px;height:44px;background:#fff;min-width:64px;cursor:pointer}
+.color-control{display:grid;grid-template-columns:72px 1fr;gap:8px;align-items:center}
+.color-control input[type=color]{width:72px}
+.color-control input[type=text]{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;text-transform:uppercase;letter-spacing:.3px}
+.field-help{font-size:10px;color:#8994a6;line-height:1.4}
+input.invalid{border-color:#d95063!important;background:#fff6f7!important;box-shadow:0 0 0 3px rgba(217,80,99,.10)!important}
 .link-list{display:grid;gap:10px}
 .link-editor{
  display:grid;
