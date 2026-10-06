@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Admin — Bapas Palopo Link Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+  <main class="admin-shell">
+    <header>
+      <div><p class="eyebrow">BAPAS PALOPO</p><h1>Link Hub Admin</h1><p class="muted">Edit konten di sini, lalu konfirmasi publish menggunakan akun GitHub pemilik repository.</p></div>
+      <div class="header-actions"><a class="ghost" href="../" target="_blank">↗ Lihat website</a></div>
+    </header>
+    <section class="notice secure"><span>●</span><div><b>Publish dilindungi GitHub.</b><br>Siapa pun mungkin dapat membuka halaman editor ini, tetapi perubahan tidak dapat masuk ke website publik kecuali publish dikonfirmasi melalui akun GitHub <b>bapaspalopo</b>.</div></section>
+    <div class="layout">
+      <section class="panel"><h2>Identitas</h2><div class="form-grid">
+        <label>Nama<input id="name"></label><label>Username<input id="handle"></label><label>Tagline<input id="tagline"></label><label>Status<input id="status"></label><label class="full">Bio<textarea id="bio" rows="3"></textarea></label><label>Warna aksen<input id="accent" type="color"></label><label>Tema<select id="theme"><option value="dark">Dark</option><option value="light">Light</option></select></label>
+      </div></section>
+      <section class="panel"><h2>Kontak & Tentang</h2><div class="form-grid">
+        <label>Nomor pengaduan / WhatsApp<input id="phone"></label><label>Google Maps URL<input id="maps"></label><label class="full">Alamat<textarea id="address" rows="2"></textarea></label><label class="full">Tentang Bapas<textarea id="about" rows="4"></textarea></label>
+      </div></section>
+      <section class="panel"><div class="panel-head"><h2>Tautan</h2><button id="addLink">+ Tambah tautan</button></div><div id="linkList" class="link-list"></div></section>
+    </div>
+    <section class="publish-bar"><div><strong id="saveState">Data dimuat dari website.</strong><small>Publish membuka halaman konfirmasi GitHub. Setelah dikirim, perubahan diproses otomatis.</small></div><button id="reloadBtn">Muat ulang</button><button id="publishBtn" class="primary">Publish via GitHub ↗</button></section>
+  </main>
+  <template id="linkTemplate"><article class="link-editor"><div class="drag">⋮⋮</div><div class="fields"><div class="two"><input data-k="title" placeholder="Judul"><input data-k="subtitle" placeholder="Deskripsi"></div><input data-k="url" placeholder="https://..."><div class="three"><input data-k="platform" placeholder="platform: instagram"><input data-k="icon" placeholder="IG"><label class="check"><input data-k="featured" type="checkbox"> Featured</label></div></div><div class="row-actions"><button data-act="up">↑</button><button data-act="down">↓</button><button data-act="delete" class="danger">×</button></div></article></template>
+  <script src="admin.js"></script>
+</body>
+</html>
