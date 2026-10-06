@@ -1,0 +1,60 @@
+name: Publish Link Hub
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  publish:
+    if: github.event.issue.user.login == 'bapaspalopo' && startsWith(github.event.issue.title, '[LINKHUB-PUBLISH]')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Validate and write profile
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const body = process.env.ISSUE_BODY || '';
+          const match = body.match(/<!-- LINKHUB_PAYLOAD_START -->\s*([A-Za-z0-9+/=\r\n]+?)\s*<!-- LINKHUB_PAYLOAD_END -->/);
+          if (!match) throw new Error('Payload tidak ditemukan.');
+          const raw = Buffer.from(match[1].replace(/\s/g, ''), 'base64').toString('utf8');
+          const data = JSON.parse(raw);
+          if (!data || typeof data !== 'object' || !Array.isArray(data.links)) throw new Error('Struktur data tidak valid.');
+          if (data.links.length > 30) throw new Error('Terlalu banyak tautan.');
+          for (const link of data.links) {
+            if (!link.title || !link.url) throw new Error('Judul dan URL tautan wajib diisi.');
+            const url = new URL(link.url);
+            if (!['http:', 'https:'].includes(url.protocol)) throw new Error('URL harus http/https.');
+          }
+          fs.writeFileSync('data/profile.json', JSON.stringify(data, null, 2) + '\n');
+          NODE
+
+      - name: Commit changes
+        run: |
+          git config user.name "Bapas Link Hub Bot"
+          git config user.email "actions@users.noreply.github.com"
+          if git diff --quiet -- data/profile.json; then
+            echo "Tidak ada perubahan."
+          else
+            git add data/profile.json
+            git commit -m "Update Link Hub content"
+            git push origin main
+          fi
+
+      - name: Confirm and close request
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: |
+          gh issue comment "$ISSUE_NUMBER" --body "✅ Konten Link Hub berhasil divalidasi dan dipublish. GitHub Pages akan memperbarui situs secara otomatis."
+          gh issue close "$ISSUE_NUMBER" --reason completed
