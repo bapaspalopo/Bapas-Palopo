@@ -1,7 +1,7 @@
 const $=s=>document.querySelector(s);
 const list=$('#linkList');
 const tpl=$('#linkTemplate');
-const profileKeys=['name','handle','tagline','bio','status','accent','accentPreset','accentLight','accentDark','darkBg','theme','phone','address','maps','about'];
+const profileKeys=['name','handle','tagline','bio','status','logoMode','logoText','logoUrl','accent','accentPreset','accentLight','accentDark','darkBg','theme','phone','address','maps','about'];
 let data={
  name:'',handle:'',tagline:'',bio:'',status:'',
  accent:'#00223D',
@@ -10,6 +10,7 @@ let data={
  accentDark:'#F1BF60',
  darkBg:'#071B2A',
  theme:'light',
+ logoMode:'text',logoText:'BP',logoUrl:'',
  phone:'',address:'',maps:'',about:'',
  links:[]
 };
