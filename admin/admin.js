@@ -1,7 +1,7 @@
 const $=s=>document.querySelector(s);
 const list=$('#linkList');
 const tpl=$('#linkTemplate');
-const profileKeys=['name','handle','tagline','bio','status','logoMode','logoText','logoUrl','accent','accentPreset','accentLight','accentDark','darkBg','theme','phone','address','maps','about'];
+const profileKeys=['name','handle','tagline','bio','status','logoMode','logoText','logoData','accent','accentPreset','accentLight','accentDark','darkBg','theme','phone','address','maps','about'];
 let data={
  name:'',handle:'',tagline:'',bio:'',status:'',
  accent:'#00223D',
@@ -10,13 +10,43 @@ let data={
  accentDark:'#F1BF60',
  darkBg:'#071B2A',
  theme:'light',
- logoMode:'text',logoText:'BP',logoUrl:'',
+ logoMode:'text',logoText:'BP',logoData:'',
  phone:'',address:'',maps:'',about:'',
  links:[]
 };
 
 function setActivePreset(preset){
- document.querySelectorAll('.color-swatch').forEach(btn=>{
+ $('#logoFile')?.addEventListener('change',async e=>{
+ const file=e.target.files?.[0];
+ if(!file)return;
+ try{
+  $('#saveState').textContent='Memproses logo...';
+  data.logoData=await compressLogo(file);
+  data.logoMode='image';
+  data.logoText=data.logoText||'BP';
+  $('#logoMode').value='image';
+  $('#logoText').value=data.logoText;
+  $('#logoData').value=data.logoData;
+  renderLogoPreview();
+  markDirty();
+ }catch(err){
+  alert(err.message||'Gagal memproses logo.');
+ }
+ e.target.value='';
+});
+
+$('#removeLogo')?.addEventListener('click',()=>{
+ data.logoMode='text';
+ data.logoData='';
+ data.logoText='BP';
+ $('#logoMode').value='text';
+ $('#logoText').value='BP';
+ $('#logoData').value='';
+ renderLogoPreview();
+ markDirty();
+});
+
+document.querySelectorAll('.color-swatch').forEach(btn=>{
   btn.classList.toggle('active',btn.dataset.preset===preset);
  });
 }
@@ -27,6 +57,7 @@ function fillProfile(){
   if(el) el.value=data[k]??'';
  });
  setActivePreset(data.accentPreset||'pas');
+ renderLogoPreview();
 }
 
 function readProfile(){
@@ -34,6 +65,55 @@ function readProfile(){
   const el=$('#'+k);
   if(el) data[k]=el.value;
  });
+}
+
+function renderLogoPreview(){
+ const text=$('#logoPreviewText');
+ const image=$('#logoPreviewImage');
+ if(!text||!image)return;
+ if(data.logoMode==='image'&&data.logoData){
+  image.src=data.logoData;
+  image.hidden=false;
+  text.hidden=true;
+ }else{
+  image.hidden=true;
+  image.removeAttribute('src');
+  text.hidden=false;
+  text.textContent=data.logoText||'BP';
+ }
+}
+
+async function compressLogo(file){
+ if(!file||!file.type.startsWith('image/')) throw new Error('File harus berupa gambar.');
+ if(file.size>8*1024*1024) throw new Error('Ukuran gambar terlalu besar. Maksimal 8 MB.');
+
+ const objectUrl=URL.createObjectURL(file);
+ try{
+  const img=new Image();
+  await new Promise((resolve,reject)=>{
+   img.onload=resolve;
+   img.onerror=()=>reject(new Error('Gambar tidak dapat dibaca.'));
+   img.src=objectUrl;
+  });
+
+  const max=256;
+  const scale=Math.min(1,max/Math.max(img.width,img.height));
+  const width=Math.max(1,Math.round(img.width*scale));
+  const height=Math.max(1,Math.round(img.height*scale));
+  const canvas=document.createElement('canvas');
+  canvas.width=width;
+  canvas.height=height;
+  const ctx=canvas.getContext('2d');
+  ctx.clearRect(0,0,width,height);
+  ctx.drawImage(img,0,0,width,height);
+
+  let result=canvas.toDataURL('image/webp',0.82);
+  if(result.length>48000) result=canvas.toDataURL('image/webp',0.68);
+  if(result.length>60000) throw new Error('Logo masih terlalu besar setelah dikompres. Gunakan logo yang lebih sederhana/kecil.');
+  return result;
+ }finally{
+  URL.revokeObjectURL(objectUrl);
+ }
 }
 
 function markDirty(){
