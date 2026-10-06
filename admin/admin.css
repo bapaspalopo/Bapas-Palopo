@@ -97,6 +97,13 @@ input:focus,textarea:focus,select:focus{
 .color-swatch.active:after{content:"✓";position:absolute;top:6px;right:7px;width:16px;height:16px;border-radius:50%;display:grid;place-items:center;background:#2447d8;color:#fff;font-size:10px;font-weight:800}
 .color-swatch.official small{color:#8a6a20}
 .field-help{font-size:10px;color:#8994a6;line-height:1.4}
+.logo-upload{display:flex;align-items:center;gap:14px;padding:14px;border:1px solid var(--line);background:var(--panel-soft);border-radius:16px}
+.logo-preview{width:82px;height:82px;flex:0 0 82px;border-radius:22px;background:linear-gradient(145deg,#2f3038,#17181d);display:grid;place-items:center;overflow:hidden;color:#fff;font-size:23px;font-weight:800;box-shadow:0 10px 28px rgba(30,45,80,.12)}
+.logo-preview img{width:100%;height:100%;object-fit:contain;padding:8px;background:#fff}
+.logo-upload-actions{display:flex;align-items:flex-start;gap:8px;flex-wrap:wrap}
+.logo-upload-actions .field-help{width:100%}
+.upload-logo-btn{display:inline-flex;align-items:center;justify-content:center;border:1px solid #2447d8;background:#2447d8;color:#fff;border-radius:12px;padding:11px 14px;font-size:13px;font-weight:700;cursor:pointer}
+.upload-logo-btn input{display:none}
 .link-list{display:grid;gap:10px}
 .link-editor{
  display:grid;
@@ -193,6 +200,7 @@ input:focus,textarea:focus,select:focus{
  .row-actions{justify-content:flex-end}
  .two,.three{grid-template-columns:1fr}
  .color-presets{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .logo-upload{align-items:flex-start}
  .panel{padding:15px}
  .publish-bar{align-items:stretch;flex-wrap:wrap}
  .publish-bar>div{width:100%;margin:0}
