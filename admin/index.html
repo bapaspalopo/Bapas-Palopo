@@ -19,19 +19,22 @@
     <section class="notice secure"><span>●</span><div><b>Publish dilindungi GitHub.</b><br>Siapa pun mungkin dapat membuka halaman editor ini, tetapi perubahan tidak dapat masuk ke website publik kecuali publish dikonfirmasi melalui akun GitHub <b>bapaspalopo</b>.</div></section>
     <div class="layout">
       <section class="panel"><h2>Identitas</h2><div class="form-grid">
-        <label>Nama<input id="name"></label><label>Username<input id="handle"></label><label>Tagline<input id="tagline"></label><label>Status<input id="status"></label><label class="full">Bio<textarea id="bio" rows="3"></textarea></label><label>Warna aksen
+        <label>Nama<input id="name"></label><label>Username<input id="handle"></label><label>Tagline<input id="tagline"></label><label>Status<input id="status"></label><label class="full">Bio<textarea id="bio" rows="3"></textarea></label><label class="full">Kombinasi warna
   <input id="accent" type="hidden">
-  <div class="color-presets" id="colorPresets" aria-label="Pilihan warna aksen">
-    <button type="button" class="color-swatch official" data-color="#00223D" style="--swatch:#00223D" title="Navy Pemasyarakatan"><span></span><b>Navy</b><small>Pemasyarakatan</small></button>
-    <button type="button" class="color-swatch official" data-color="#F1BF60" style="--swatch:#F1BF60" title="Gold Kemenimipas"><span></span><b>Gold</b><small>Kemenimipas</small></button>
-    <button type="button" class="color-swatch official" data-color="#44AAFE" style="--swatch:#44AAFE" title="Biru Langit Kemenimipas"><span></span><b>Sky</b><small>Kemenimipas</small></button>
-    <button type="button" class="color-swatch" data-color="#2563EB" style="--swatch:#2563EB" title="Royal Blue"><span></span><b>Royal</b><small>Modern</small></button>
-    <button type="button" class="color-swatch" data-color="#0F766E" style="--swatch:#0F766E" title="Teal"><span></span><b>Teal</b><small>Tenang</small></button>
-    <button type="button" class="color-swatch" data-color="#15803D" style="--swatch:#15803D" title="Emerald"><span></span><b>Emerald</b><small>Segar</small></button>
-    <button type="button" class="color-swatch" data-color="#7C3AED" style="--swatch:#7C3AED" title="Violet"><span></span><b>Violet</b><small>Kreatif</small></button>
-    <button type="button" class="color-swatch" data-color="#C2410C" style="--swatch:#C2410C" title="Orange"><span></span><b>Orange</b><small>Hangat</small></button>
+  <input id="accentPreset" type="hidden">
+  <input id="accentLight" type="hidden">
+  <input id="accentDark" type="hidden">
+  <input id="darkBg" type="hidden">
+  <div class="color-presets" id="colorPresets" aria-label="Pilihan kombinasi warna">
+    <button type="button" class="color-swatch official" data-preset="pas" data-light="#00223D" data-dark="#F1BF60" data-bg="#071B2A" title="Pemasyarakatan Navy + Gold"><span class="pair"><i style="--swatch:#00223D"></i><i style="--swatch:#F1BF60"></i></span><b>Pemasyarakatan</b><small>Navy / Gold</small></button>
+    <button type="button" class="color-swatch official" data-preset="sky" data-light="#1267A8" data-dark="#44AAFE" data-bg="#071827" title="Kemenimipas Sky"><span class="pair"><i style="--swatch:#1267A8"></i><i style="--swatch:#44AAFE"></i></span><b>Sky</b><small>Biru resmi</small></button>
+    <button type="button" class="color-swatch" data-preset="royal" data-light="#1D4ED8" data-dark="#7EA2FF" data-bg="#0A1020" title="Royal Blue"><span class="pair"><i style="--swatch:#1D4ED8"></i><i style="--swatch:#7EA2FF"></i></span><b>Royal</b><small>Biru modern</small></button>
+    <button type="button" class="color-swatch" data-preset="teal" data-light="#0F766E" data-dark="#5EEAD4" data-bg="#071C1A" title="Teal"><span class="pair"><i style="--swatch:#0F766E"></i><i style="--swatch:#5EEAD4"></i></span><b>Teal</b><small>Tenang</small></button>
+    <button type="button" class="color-swatch" data-preset="emerald" data-light="#15803D" data-dark="#6EE7A0" data-bg="#081A11" title="Emerald"><span class="pair"><i style="--swatch:#15803D"></i><i style="--swatch:#6EE7A0"></i></span><b>Emerald</b><small>Segar</small></button>
+    <button type="button" class="color-swatch" data-preset="violet" data-light="#6D28D9" data-dark="#C4B5FD" data-bg="#130B24" title="Violet"><span class="pair"><i style="--swatch:#6D28D9"></i><i style="--swatch:#C4B5FD"></i></span><b>Violet</b><small>Kreatif</small></button>
+    <button type="button" class="color-swatch" data-preset="orange" data-light="#C2410C" data-dark="#FDBA74" data-bg="#241006" title="Orange"><span class="pair"><i style="--swatch:#C2410C"></i><i style="--swatch:#FDBA74"></i></span><b>Orange</b><small>Hangat</small></button>
   </div>
-  <small class="field-help">Pilihan sudah disiapkan agar tetap terbaca di tema terang maupun gelap.</small>
+  <small class="field-help">Satu pilihan berisi pasangan warna untuk tema terang dan gelap sekaligus. Tema gelap juga mendapat background senada, jadi tidak hitam polos.</small>
 </label><label>Tema<select id="theme"><option value="dark">Dark</option><option value="light">Light</option></select></label>
       </div></section>
       <section class="panel"><h2>Kontak & Tentang</h2><div class="form-grid">
