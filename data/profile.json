@@ -71,5 +71,8 @@
       "icon": "MAP",
       "featured": false
     }
-  ]
+  ],
+  "logoMode": "text",
+  "logoText": "BP",
+  "logoUrl": ""
 }
