@@ -11,12 +11,61 @@
   "maps": "https://www.google.com/maps/search/?api=1&query=Balai+Pemasyarakatan+Kelas+II+Palopo&query_place_id=ChIJF1ttHjhgkS0RIAhPp6qdJ5g",
   "about": "Balai Pemasyarakatan (Bapas) melaksanakan tugas pembimbingan kemasyarakatan, termasuk penelitian kemasyarakatan, pembimbingan, pengawasan, dan pendampingan klien pemasyarakatan.",
   "links": [
-    {"title":"LATUPPA","subtitle":"Layanan Terpadu Bapas Palopo","url":"https://bpspalopo.my.canva.site/","platform":"service","icon":"LT","featured":true},
-    {"title":"WhatsApp / Pengaduan","subtitle":"+62 811-4211-220","url":"https://wa.me/628114211220","platform":"whatsapp","icon":"WA","featured":true},
-    {"title":"Instagram","subtitle":"@bapaspalopo","url":"https://www.instagram.com/bapaspalopo/?hl=id","platform":"instagram","icon":"IG","featured":false},
-    {"title":"Facebook","subtitle":"Bapas Palopo","url":"https://www.facebook.com/bapaspalopo","platform":"facebook","icon":"FB","featured":false},
-    {"title":"YouTube","subtitle":"Bapas Kelas II Palopo","url":"https://www.youtube.com/@bapaskelasiipalopo6372","platform":"youtube","icon":"YT","featured":false},
-    {"title":"X / Twitter","subtitle":"@bapaspalopo_","url":"https://x.com/bapaspalopo_","platform":"x","icon":"X","featured":false},
-    {"title":"Google Maps","subtitle":"Petunjuk arah ke kantor Bapas Kelas II Palopo","url":"https://www.google.com/maps/search/?api=1&query=Balai+Pemasyarakatan+Kelas+II+Palopo&query_place_id=ChIJF1ttHjhgkS0RIAhPp6qdJ5g","platform":"maps","icon":"MAP","featured":false}
+    {
+      "title": "Website",
+      "subtitle": "Layanan Terpadu Bapas Palopo",
+      "url": "https://bpspalopo.my.canva.site/",
+      "platform": "service",
+      "icon": "LT",
+      "featured": true
+    },
+    {
+      "title": "WhatsApp / Pengaduan",
+      "subtitle": "+62 811-4211-220",
+      "url": "https://wa.me/628114211220",
+      "platform": "whatsapp",
+      "icon": "WA",
+      "featured": true
+    },
+    {
+      "title": "Instagram",
+      "subtitle": "@bapaspalopo",
+      "url": "https://www.instagram.com/bapaspalopo/?hl=id",
+      "platform": "instagram",
+      "icon": "IG",
+      "featured": false
+    },
+    {
+      "title": "Facebook",
+      "subtitle": "Bapas Palopo",
+      "url": "https://www.facebook.com/bapaspalopo",
+      "platform": "facebook",
+      "icon": "FB",
+      "featured": false
+    },
+    {
+      "title": "YouTube",
+      "subtitle": "Bapas Kelas II Palopo",
+      "url": "https://www.youtube.com/@bapaskelasiipalopo6372",
+      "platform": "youtube",
+      "icon": "YT",
+      "featured": false
+    },
+    {
+      "title": "X / Twitter",
+      "subtitle": "@bapaspalopo_",
+      "url": "https://x.com/bapaspalopo_",
+      "platform": "x",
+      "icon": "X",
+      "featured": false
+    },
+    {
+      "title": "Google Maps",
+      "subtitle": "Petunjuk arah ke kantor Bapas Kelas II Palopo",
+      "url": "https://www.google.com/maps/search/?api=1&query=Balai+Pemasyarakatan+Kelas+II+Palopo&query_place_id=ChIJF1ttHjhgkS0RIAhPp6qdJ5g",
+      "platform": "maps",
+      "icon": "MAP",
+      "featured": false
+    }
   ]
 }
