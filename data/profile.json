@@ -10,6 +10,9 @@
   "accentDark": "#F1BF60",
   "darkBg": "#071B2A",
   "theme": "light",
+  "logoMode": "image",
+  "logoText": "BP",
+  "logoUrl": "",
   "phone": "+62 811-4211-220",
   "address": "Jl. Dr. Ratulangi No. KM.08, Buntu Datu, Kec. Bara, Kota Palopo, Sulawesi Selatan",
   "maps": "https://www.google.com/maps/search/?api=1&query=Balai+Pemasyarakatan+Kelas+II+Palopo&query_place_id=ChIJF1ttHjhgkS0RIAhPp6qdJ5g",
@@ -71,8 +74,5 @@
       "icon": "MAP",
       "featured": false
     }
-  ],
-  "logoMode": "text",
-  "logoText": "BP",
-  "logoData": ""
+  ]
 }
