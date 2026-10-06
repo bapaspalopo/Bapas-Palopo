@@ -4,7 +4,11 @@
   "tagline": "Pelayanan • Informasi • Media",
   "bio": "Akses cepat ke kanal resmi, layanan terpadu, pengaduan, dan informasi Bapas Kelas II Palopo.",
   "status": "Aktif melayani",
-  "accent": "#00223D",
+  "accent": "#1267A8",
+  "accentPreset": "sky",
+  "accentLight": "#1267A8",
+  "accentDark": "#44AAFE",
+  "darkBg": "#071827",
   "theme": "light",
   "phone": "+62 811-4211-220",
   "address": "Jl. Dr. Ratulangi No. KM.08, Buntu Datu, Kec. Bara, Kota Palopo, Sulawesi Selatan",
@@ -67,9 +71,5 @@
       "icon": "MAP",
       "featured": false
     }
-  ],
-  "accentPreset": "pas",
-  "accentLight": "#00223D",
-  "accentDark": "#F1BF60",
-  "darkBg": "#071B2A"
+  ]
 }
